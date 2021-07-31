@@ -20,6 +20,7 @@
       "remoting": {
         "sharedMethods": {
           "*": false,
+          "redirectToOriginalURL": true,
           "generateUrl": true
         }
       }
