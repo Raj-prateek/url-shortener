@@ -27,6 +27,24 @@ module.exports = function(Url) {
     }
   );
 
+  Url.remoteMethod(
+    'redirectToOriginalURL',
+    {
+      description: 'API to redirect to original url',
+      accepts: [
+        {
+          arg: 'id',
+          type: 'string',
+          required: true,
+        },
+      ],
+      http: {path: '/:id', verb: 'get'},
+      returns: {
+        arg: 'url', type: 'string', root: true,
+      },
+    }
+);
+
   /**
    * Generate url.
    *
@@ -52,4 +70,42 @@ module.exports = function(Url) {
     );
     return next.promise;
   };
+
+  /**
+   * Find & Redirect to original url.
+   *
+   * @param {String} id URL id.
+   */
+  Url.redirectToOriginalURL = function(id, next) {
+    try {
+      assert(typeof id === 'string', 'invalid url type');
+    } catch (e) {
+      let err = new Error(g.f(e.message));
+      err.statusCode = 422;
+      err.code = 'UNPROCESSABLE_ENTITY';
+      return next(err);
+    }
+
+    Url.findById(id,
+      function(err, url) {
+        if (err) return next(err);
+        if (!url) {
+          let err = new Error(g.f('url not found with id ' + id));
+          err.statusCode = 404;
+          err.code = 'NOT_FOUND';
+          return next(err);
+        }
+        return next(null, url);
+      }
+    );
+  };
+
+  Url.afterRemote('redirectToOriginalURL',
+    function(ctx, remoteMethodOutput, next) {
+      if (remoteMethodOutput.url) {
+        ctx.res.status(302);
+        ctx.res.location(remoteMethodOutput.url);
+      }
+      next();
+    });
 };
