@@ -46,7 +46,7 @@ module.exports = function(Url) {
 );
 
   /**
-   * Generate url.
+   * Generate url if not exists.
    *
    * @param {String} urlStr input URL string
    */
@@ -61,13 +61,16 @@ module.exports = function(Url) {
       return next(err);
     }
 
-    Url.create({id: randomstring.generate(10), url: urlStr},
-      function(err, url) {
+    Url.findOrCreate(
+      {where: {url: urlStr}},
+      {id: randomstring.generate(10), url: urlStr},
+      function(err, url, created) {
         if (err) return next(err);
 
         return next(null, `${common.genrateURL(url.id)}`);
       }
     );
+
     return next.promise;
   };
 
