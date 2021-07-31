@@ -1,4 +1,4 @@
-# URL-Shortener
+# URL-Shortener [![Node.js CI](https://github.com/prateek-raj/url-shortener/actions/workflows/main.yaml/badge.svg)](https://github.com/prateek-raj/url-shortener/actions/workflows/main.yaml)
 
 ## Docker
 
