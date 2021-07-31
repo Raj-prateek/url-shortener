@@ -12,5 +12,17 @@
       "../common/mixins",
       "./mixins"
     ]
+  },
+  "url": {
+    "dataSource": "db",
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false,
+          "generateUrl": true
+        }
+      }
+    }
   }
 }
