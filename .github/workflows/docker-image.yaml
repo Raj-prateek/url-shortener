@@ -21,4 +21,4 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag prateek9958/url-shortener:$RELEASE_VERSION
     - name: Docker Push
-      run: docker push prateek9958/url-shortener
+      run: docker push prateek9958/url-shortener:$RELEASE_VERSION
