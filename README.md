@@ -9,7 +9,7 @@
 
 ### Run
 
-- [x] Run command `node .` to run the application.
+- [x] Run command `npm run start` to run the application.
 - [x] Open http://localhost:3000/explorer to open the swagger.
 
 ### Test & Lint
