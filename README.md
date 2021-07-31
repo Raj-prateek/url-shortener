@@ -14,7 +14,7 @@
 
 ### Test & Lint
 
-- [x] Run command `npm run test` to run the all test checks.
+- [x] Run command `npm run test` to run the all test & lint checks.
 
 
 ## Docker [prateek9958/url-shortener](https://hub.docker.com/repository/docker/prateek9958/url-shortener/)
