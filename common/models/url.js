@@ -27,6 +27,11 @@ module.exports = function(Url) {
     }
   );
 
+  /**
+   * Generate url.
+   *
+   * @param {String} urlStr input URL string
+   */
   Url.generateUrl = function(urlStr, next) {
     try {
       assert(validators.validURL(urlStr), 'invalid url');
@@ -41,7 +46,7 @@ module.exports = function(Url) {
     Url.create({id: randomstring.generate(10), url: urlStr},
       function(err, url) {
         if (err) return next(err);
-        console.log(url);
+
         return next(null, `${common.genrateURL(url.id)}`);
       }
     );

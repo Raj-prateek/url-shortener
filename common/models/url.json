@@ -2,6 +2,9 @@
   "name": "url",
   "base": "PersistedModel",
   "idInjection": true,
+  "http": {
+    "path": "/"
+  },
   "options": {
     "validateUpsert": true
   },
